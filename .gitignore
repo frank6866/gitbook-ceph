@@ -1,0 +1,9 @@
+# IDEA
+.idea
+
+# static
+_book
+
+# node_modules
+node_modules
+
