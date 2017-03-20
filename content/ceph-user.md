@@ -16,17 +16,27 @@
 # 概念
 对于所有的Ceph client(比如RBD、RGW或CephFS)，Ceph将数据作为对象存储在pools中。为了读写数据，Ceph的用户必须具有访问pools的权限。
 
-## USER
-一个用户可以是一个individual(个体)或者一个应用程序。创建用户可以让我们控制谁可以访问Ceph集群，谁可以访问哪些pools。   
+## User(用户)
+一个user可以是一个individual(个体)或者一个应用程序。创建用户可以让我们控制谁可以访问Ceph集群，谁可以访问哪些pools。   
 
 Ceph中用户有一个type(类型)的属性，为了管理的目的，type通常为**client**。Ceph中用户的格式为：**TYPE.ID**，其中TYPE表示用户类型，ID为用户ID。使用type的原因是：Ceph Monitors、OSDs和Metadata Servers也使用Cephx协议，但他们不是client；使用type是为了方便把他们区分开来。
 
-## AUTHORIZATION (CAPABILITIES)
-12345678 90试一下确定哈哈
-死
+## Authorization (Capabilities)
+Ceph使用术语“capabilities”(caps)来描述用户操作monitors、OSDs和metadata servers时的权限检查。  Capabilities也可以限制访问pool中的数据或者命名空间。Ceph管理员可以在创建或者更新用户的时候设置用户的Capabilities。  
 
+## POOL(池)
+池是一个顶层的逻辑分区，一般是针对不同的应用、或者应用中不同的模块建立相应的用户和池。  
 
+比如，OpenStack使用Ceph作为后端存储时：  
 
+* nova模块:  建立vms池
+* glance模块:  建立images池，创建client.glance用户
+* cinder模块: 建立volumes和backups池，创建client.cinder用户
+
+## Namespace(命名空间)
+namespace(命名空间)是池中对象的逻辑分组，池中的对象可以被关联到命名空间；一个用户的访问权限粒度可以到命名空间级别。  
+
+但是命名空间只对位于librados上层的应用程序有用。RBD、RGW和CephFS暂时不支持这种特性。  
 
 
 
