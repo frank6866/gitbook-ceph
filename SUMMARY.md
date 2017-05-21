@@ -1,28 +1,19 @@
 # Summary
 
-* [Introduction](README.md)
-* [简介](content/ceph-intro.md)
+* [简介](README.md)
 
 -----
-* [存储基础](content/ceph-storage-basic.md)
-
------
-* [安装](content/ceph-install.md)
+* 基础
+    * [Ceph常见概念](chapters/basic/ceph-basic-concept.md)
+    * [安装](chapters/basic/ceph-basic-install.md)
+    * [Ceph常用端口](chapters/basic/ceph-basic-port.md)
 
 -----
 * 运维操作
-    * [用户管理](content/ceph-user.md)
-    * [常用命令](content/ceph-commands.md)
+    * [用户管理](chapters/ops/ceph-ops-user.md)
+    * [集群状态](chapters/ops/ceph-ops-status.md)
 
 -----
-* 监控
-    * [集群状态](content/ceph-status.md)
-
------
-* 日志
-    * [日志文件解析](content/ceph-logging.md)
-
------
-* 其他
-    * [常用端口](content/ceph-port.md)
+* 常见异常
+    * [clock skew detected](chapters/exception/ceph-exception-clock.md)
 

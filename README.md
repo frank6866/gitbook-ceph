@@ -1,17 +1,13 @@
-# Ceph笔记
+# Ceph实践
 
 ## 主要内容
 
-* Ceph的基本操作
-* Ceph的监控及日志管理
-* Ceph运维实践
+* Ceph运维实践,监控及日志管理
+* Ceph的原理
+* Ceph常见异常与解决
+* Ceph压力测试,性能分析和优化
 
-## 备注
-* 本文gitbook地址: [https://frank6866.gitbooks.io/ceph/content](https://frank6866.gitbooks.io/ceph/content/)
-* 官方文档地址: [http://docs.ceph.com/docs/kraken/](http://docs.ceph.com/docs/kraken/)
-* 本文部分内容引用了官方文档
-* 本文分析了很多架构图、交互图;看图说话，印象更深刻一点
 
-## TODO
-* ceph的认证模型
+## About me
+本人运维开发一枚,专注于IaaS及Paas相关技术,欢迎大家拍砖, [frank6866@vip.sina.com](mailto:frank6866@vip.sina.com)
 

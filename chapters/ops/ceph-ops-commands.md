@@ -1,3 +1,4 @@
+    * [常用命令](chapters/ops/ceph-ops-commands.md)
 # 常用命令
 
 列出所有池 ceph osd lspools

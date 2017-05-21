@@ -4,4 +4,4 @@ scriptPath=`dirname $0`
 
 cd ${scriptPath}
 gitbook init
-gitbook serve ${scriptPath}
+gitbook serve --no-watch ${scriptPath}

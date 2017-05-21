@@ -1,0 +1,16 @@
+{
+  "plugins": [
+    "-disqus",
+    "-sharing",
+    "github-buttons"
+  ],
+  "pluginsConfig": {
+    "github-buttons": {
+      "repo": "frank6866/gitbook-ceph",
+      "types": [
+        "star"
+      ],
+      "size": "small"
+    }
+  }
+}
