@@ -11,13 +11,13 @@
 
 -----
 * 常用命令
-    * [all](chapters/command/ceph-command-all.md)
     * [集群状态 -s](chapters/command/ceph-command-status.md)
     * [集群节点信息 node](chapters/command/ceph-command-node.md)
     * [集群空间使用 df](chapters/command/ceph-command-df.md)
     * [用户管理](chapters/command/ceph-command-user.md)
     * [monitor管理](chapters/command/ceph-command-monitor.md)
     * [osd管理](chapters/command/ceph-command-osd.md)
+    * [pool管理](chapters/command/ceph-command-osd-pool.md)
 
 -----
 * [运维操作](chapters/ops/ceph-ops.md)

@@ -1,0 +1,61 @@
+osd lspools {<int>}                      list pools
+
+osd pool create <poolname> <int[0-]>     create pool
+ {<int[0-]>} {replicated|erasure}
+ {<erasure_code_profile>} {<ruleset>}
+ {<int>}
+osd pool delete <poolname> {<poolname>}  delete pool
+ {--yes-i-really-really-mean-it}
+osd pool get <poolname> size|min_size|   get pool parameter <var>
+ crash_replay_interval|pg_num|pgp_num|
+ crush_ruleset|hashpspool|nodelete|
+ nopgchange|nosizechange|write_fadvise_
+ dontneed|noscrub|nodeep-scrub|hit_set_
+ type|hit_set_period|hit_set_count|hit_
+ set_fpp|auid|target_max_objects|target_
+ max_bytes|cache_target_dirty_ratio|
+ cache_target_dirty_high_ratio|cache_
+ target_full_ratio|cache_min_flush_age|
+ cache_min_evict_age|erasure_code_
+ profile|min_read_recency_for_promote|
+ all|min_write_recency_for_promote|fast_
+ read|hit_set_grade_decay_rate|hit_set_
+ search_last_n|scrub_min_interval|scrub_
+ max_interval|deep_scrub_interval|
+ recovery_priority|recovery_op_priority|
+ scrub_priority
+osd pool get-quota <poolname>            obtain object or byte limits for pool
+osd pool ls {detail}                     list pools
+osd pool mksnap <poolname> <snap>        make snapshot <snap> in <pool>
+osd pool rename <poolname> <poolname>    rename <srcpool> to <destpool>
+osd pool rm <poolname> {<poolname>} {--  remove pool
+ yes-i-really-really-mean-it}
+osd pool rmsnap <poolname> <snap>        remove snapshot <snap> from <pool>
+osd pool set <poolname> size|min_size|   set pool parameter <var> to <val>
+ crash_replay_interval|pg_num|pgp_num|
+ crush_ruleset|hashpspool|nodelete|
+ nopgchange|nosizechange|write_fadvise_
+ dontneed|noscrub|nodeep-scrub|hit_set_
+ type|hit_set_period|hit_set_count|hit_
+ set_fpp|use_gmt_hitset|debug_fake_ec_
+ pool|target_max_bytes|target_max_
+ objects|cache_target_dirty_ratio|cache_
+ target_dirty_high_ratio|cache_target_
+ full_ratio|cache_min_flush_age|cache_
+ min_evict_age|auid|min_read_recency_
+ for_promote|min_write_recency_for_
+ promote|fast_read|hit_set_grade_decay_
+ rate|hit_set_search_last_n|scrub_min_
+ interval|scrub_max_interval|deep_scrub_
+ interval|recovery_priority|recovery_op_
+ priority|scrub_priority <val> {--yes-i-
+ really-mean-it}
+osd pool set-quota <poolname> max_       set object or byte limit on pool
+ objects|max_bytes <val>
+osd pool stats {<name>}                  obtain stats from all pools, or from
+                                          specified pool
+
+
+
+
+

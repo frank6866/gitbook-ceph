@@ -1,3 +1,5 @@
+    * [all](chapters/command/ceph-command-all.md)
+
 # Ceph命令大全
 
 
