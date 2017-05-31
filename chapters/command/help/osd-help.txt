@@ -1,0 +1,209 @@
+osd blacklist add|rm <EntityAddr>        add (optionally until <expire> seconds
+ {<float[0.0-]>}                          from now) or remove <addr> from
+                                          blacklist
+osd blacklist clear                      clear all blacklisted clients
+osd blacklist ls                         show blacklisted clients
+osd blocked-by                           print histogram of which OSDs are
+                                          blocking their peers
+osd create {<uuid>} {<int[0-]>}          create new osd (with optional UUID and
+                                          ID)
+osd crush add <osdname (id|osd.id)>      add or update crushmap position and
+ <float[0.0-]> <args> [<args>...]         weight for <name> with <weight> and
+                                          location <args>
+osd crush add-bucket <name> <type>       add no-parent (probably root) crush
+                                          bucket <name> of type <type>
+osd crush create-or-move <osdname (id|   create entry or move existing entry
+ osd.id)> <float[0.0-]> <args> [<args>..  for <name> <weight> at/to location
+ .]                                       <args>
+osd crush dump                           dump crush map
+osd crush get-tunable straw_calc_version get crush tunable <tunable>
+osd crush link <name> <args> [<args>...] link existing entry for <name> under
+                                          location <args>
+osd crush move <name> <args> [<args>...] move existing entry for <name> to
+                                          location <args>
+osd crush remove <name> {<ancestor>}     remove <name> from crush map (
+                                          everywhere, or just at <ancestor>)
+osd crush rename-bucket <srcname>        rename bucket <srcname> to <dstname>
+ <dstname>
+osd crush reweight <name> <float[0.0-]>  change <name>'s weight to <weight> in
+                                          crush map
+osd crush reweight-all                   recalculate the weights for the tree
+                                          to ensure they sum correctly
+osd crush reweight-subtree <name>        change all leaf items beneath <name>
+ <float[0.0-]>                            to <weight> in crush map
+osd crush rm <name> {<ancestor>}         remove <name> from crush map (
+                                          everywhere, or just at <ancestor>)
+osd crush rule create-erasure <name>     create crush rule <name> for erasure
+ {<profile>}                              coded pool created with <profile> (
+                                          default default)
+osd crush rule create-simple <name>      create crush rule <name> to start from
+ <root> <type> {firstn|indep}             <root>, replicate across buckets of
+                                          type <type>, using a choose mode of
+                                          <firstn|indep> (default firstn; indep
+                                          best for erasure pools)
+osd crush rule dump {<name>}             dump crush rule <name> (default all)
+osd crush rule list                      list crush rules
+osd crush rule ls                        list crush rules
+osd crush rule rm <name>                 remove crush rule <name>
+osd crush set                            set crush map from input file
+osd crush set <osdname (id|osd.id)>      update crushmap position and weight
+ <float[0.0-]> <args> [<args>...]         for <name> to <weight> with location
+                                          <args>
+osd crush set-tunable straw_calc_        set crush tunable <tunable> to <value>
+ version <int>
+osd crush show-tunables                  show current crush tunables
+osd crush tree                           dump crush buckets and items in a tree
+                                          view
+osd crush tunables legacy|argonaut|      set crush tunables values to <profile>
+ bobtail|firefly|hammer|jewel|optimal|
+ default
+osd crush unlink <name> {<ancestor>}     unlink <name> from crush map (
+                                          everywhere, or just at <ancestor>)
+osd deep-scrub <who>                     initiate deep scrub on osd <who>
+
+
+
+osd df {plain|tree}                      show OSD utilization
+osd down <ids> [<ids>...]                set osd(s) <id> [<id>...] down
+osd dump {<int[0-]>}                     print summary of OSD map
+osd erasure-code-profile get <name>      get erasure code profile <name>
+osd erasure-code-profile ls              list all erasure code profiles
+osd erasure-code-profile rm <name>       remove erasure code profile <name>
+osd erasure-code-profile set <name>      create erasure code profile <name>
+ {<profile> [<profile>...]}               with [<key[=value]> ...] pairs. Add a
+                                          --force at the end to override an
+                                          existing profile (VERY DANGEROUS)
+osd find <int[0-]>                       find osd <id> in the CRUSH map and
+                                          show its location
+osd getcrushmap {<int[0-]>}              get CRUSH map
+osd getmap {<int[0-]>}                   get OSD map
+osd getmaxosd                            show largest OSD id
+osd in <ids> [<ids>...]                  set osd(s) <id> [<id>...] in
+osd lost <int[0-]> {--yes-i-really-mean- mark osd as permanently lost. THIS
+ it}                                      DESTROYS DATA IF NO MORE REPLICAS
+                                          EXIST, BE CAREFUL
+
+
+
+osd ls {<int[0-]>}                       show all OSD ids
+osd lspools {<int>}                      list pools
+osd map <poolname> <objectname>          find pg for <object> in <pool> with
+ {<nspace>}                               [namespace]
+osd metadata {<int[0-]>}                 fetch metadata for osd {id} (default
+                                          all)
+osd out <ids> [<ids>...]                 set osd(s) <id> [<id>...] out
+osd pause                                pause osd
+osd perf                                 print dump of OSD perf summary stats
+osd pg-temp <pgid> {<id> [<id>...]}      set pg_temp mapping pgid:[<id> [<id>...
+                                          ]] (developers only)
+osd pool create <poolname> <int[0-]>     create pool
+ {<int[0-]>} {replicated|erasure}
+ {<erasure_code_profile>} {<ruleset>}
+ {<int>}
+osd pool delete <poolname> {<poolname>}  delete pool
+ {--yes-i-really-really-mean-it}
+osd pool get <poolname> size|min_size|   get pool parameter <var>
+ crash_replay_interval|pg_num|pgp_num|
+ crush_ruleset|hashpspool|nodelete|
+ nopgchange|nosizechange|write_fadvise_
+ dontneed|noscrub|nodeep-scrub|hit_set_
+ type|hit_set_period|hit_set_count|hit_
+ set_fpp|auid|target_max_objects|target_
+ max_bytes|cache_target_dirty_ratio|
+ cache_target_dirty_high_ratio|cache_
+ target_full_ratio|cache_min_flush_age|
+ cache_min_evict_age|erasure_code_
+ profile|min_read_recency_for_promote|
+ all|min_write_recency_for_promote|fast_
+ read|hit_set_grade_decay_rate|hit_set_
+ search_last_n|scrub_min_interval|scrub_
+ max_interval|deep_scrub_interval|
+ recovery_priority|recovery_op_priority|
+ scrub_priority
+osd pool get-quota <poolname>            obtain object or byte limits for pool
+osd pool ls {detail}                     list pools
+osd pool mksnap <poolname> <snap>        make snapshot <snap> in <pool>
+osd pool rename <poolname> <poolname>    rename <srcpool> to <destpool>
+osd pool rm <poolname> {<poolname>} {--  remove pool
+ yes-i-really-really-mean-it}
+osd pool rmsnap <poolname> <snap>        remove snapshot <snap> from <pool>
+osd pool set <poolname> size|min_size|   set pool parameter <var> to <val>
+ crash_replay_interval|pg_num|pgp_num|
+ crush_ruleset|hashpspool|nodelete|
+ nopgchange|nosizechange|write_fadvise_
+ dontneed|noscrub|nodeep-scrub|hit_set_
+ type|hit_set_period|hit_set_count|hit_
+ set_fpp|use_gmt_hitset|debug_fake_ec_
+ pool|target_max_bytes|target_max_
+ objects|cache_target_dirty_ratio|cache_
+ target_dirty_high_ratio|cache_target_
+ full_ratio|cache_min_flush_age|cache_
+ min_evict_age|auid|min_read_recency_
+ for_promote|min_write_recency_for_
+ promote|fast_read|hit_set_grade_decay_
+ rate|hit_set_search_last_n|scrub_min_
+ interval|scrub_max_interval|deep_scrub_
+ interval|recovery_priority|recovery_op_
+ priority|scrub_priority <val> {--yes-i-
+ really-mean-it}
+osd pool set-quota <poolname> max_       set object or byte limit on pool
+ objects|max_bytes <val>
+osd pool stats {<name>}                  obtain stats from all pools, or from
+                                          specified pool
+osd primary-affinity <osdname (id|osd.   adjust osd primary-affinity from 0.0 <=
+ id)> <float[0.0-1.0]>                     <weight> <= 1.0
+osd primary-temp <pgid> <id>             set primary_temp mapping pgid:<id>|-1 (
+                                          developers only)
+osd repair <who>                         initiate repair on osd <who>
+osd reweight <int[0-]> <float[0.0-1.0]>  reweight osd to 0.0 < <weight> < 1.0
+osd reweight-by-pg {<int>} {<float>}     reweight OSDs by PG distribution
+ {<int>} {<poolname> [<poolname>...]}     [overload-percentage-for-
+                                          consideration, default 120]
+osd reweight-by-utilization {<int>}      reweight OSDs by utilization [overload-
+ {<float>} {<int>} {--no-increasing}      percentage-for-consideration, default
+                                          120]
+osd rm <ids> [<ids>...]                  remove osd(s) <id> [<id>...] in
+osd scrub <who>                          initiate scrub on osd <who>
+osd set full|pause|noup|nodown|noout|    set <key>
+ noin|nobackfill|norebalance|norecover|
+ noscrub|nodeep-scrub|notieragent|
+ sortbitwise|require_jewel_osds
+osd setcrushmap                          set crush map from input file
+osd setmaxosd <int[0-]>                  set new maximum osd value
+osd stat                                 print summary of OSD map
+osd test-reweight-by-pg {<int>}          dry run of reweight OSDs by PG
+ {<float>} {<int>} {<poolname>            distribution [overload-percentage-for-
+ [<poolname>...]}                         consideration, default 120]
+osd test-reweight-by-utilization         dry run of reweight OSDs by
+ {<int>} {<float>} {<int>} {--no-         utilization [overload-percentage-for-
+ increasing}                              consideration, default 120]
+osd thrash <int[0-]>                     thrash OSDs for <num_epochs>
+osd tier add <poolname> <poolname> {--   add the tier <tierpool> (the second
+ force-nonempty}                          one) to base pool <pool> (the first
+                                          one)
+osd tier add-cache <poolname>            add a cache <tierpool> (the second one)
+ <poolname> <int[0-]>                     of size <size> to existing pool
+                                          <pool> (the first one)
+osd tier cache-mode <poolname> none|     specify the caching mode for cache
+ writeback|forward|readonly|readforward|  tier <pool>
+ proxy|readproxy {--yes-i-really-mean-
+ it}
+osd tier remove <poolname> <poolname>    remove the tier <tierpool> (the second
+                                          one) from base pool <pool> (the first
+                                          one)
+osd tier remove-overlay <poolname>       remove the overlay pool for base pool
+                                          <pool>
+osd tier rm <poolname> <poolname>        remove the tier <tierpool> (the second
+                                          one) from base pool <pool> (the first
+                                          one)
+osd tier rm-overlay <poolname>           remove the overlay pool for base pool
+                                          <pool>
+osd tier set-overlay <poolname>          set the overlay pool for base pool
+ <poolname>                               <pool> to be <overlaypool>
+osd tree {<int[0-]>}                     print OSD tree
+osd unpause                              unpause osd
+osd unset full|pause|noup|nodown|noout|  unset <key>
+ noin|nobackfill|norebalance|norecover|
+ noscrub|nodeep-scrub|notieragent|
+ sortbitwise
+osd utilization                          get basic pg distribution stats

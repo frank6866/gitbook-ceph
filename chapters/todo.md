@@ -43,8 +43,19 @@ ceph安装
 ----
 原理搞一章,每个过程,发生了哪些事情
 
+常见集群状态告警
 
 
+
+filestore性能和bluestore对比
+
+
+leveldb性能测试
+
+RocksDB
+
+
+./snoop分析海量文件读写比
 
 
 ## 架构图(其他)

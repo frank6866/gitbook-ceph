@@ -1,0 +1,19 @@
+
+mon add <name> <IPaddr[:port]>           add new monitor named <name> at <addr>
+mon compact                              cause compaction of monitor's leveldb
+                                          storage
+mon dump {<int[0-]>}                     dump formatted monmap (optionally from
+                                          epoch)
+mon getmap {<int[0-]>}                   get monmap
+mon metadata <id>                        fetch metadata for mon <id>
+mon remove <name>                        remove monitor named <name>
+mon rm <name>                            remove monitor named <name>
+mon scrub                                scrub the monitor stores
+mon stat                                 summarize monitor status
+mon sync force {--yes-i-really-mean-it}  force sync of and clear monitor store
+ {--i-know-what-i-am-doing}
+mon_status                               report status of monitors
+
+
+
+

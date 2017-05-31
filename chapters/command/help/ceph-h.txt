@@ -1,0 +1,223 @@
+[root@nl-cloud-ceph-1 ~]# ceph -h
+
+ General usage:
+ ==============
+usage: ceph [-h] [-c CEPHCONF] [-i INPUT_FILE] [-o OUTPUT_FILE]
+            [--id CLIENT_ID] [--name CLIENT_NAME] [--cluster CLUSTER]
+            [--admin-daemon ADMIN_SOCKET] [--admin-socket ADMIN_SOCKET_NOPE]
+            [-s] [-w] [--watch-debug] [--watch-info] [--watch-sec]
+            [--watch-warn] [--watch-error] [--version] [--verbose] [--concise]
+            [-f {json,json-pretty,xml,xml-pretty,plain}]
+            [--connect-timeout CLUSTER_TIMEOUT]
+
+Ceph administration tool
+
+optional arguments:
+  -h, --help            request mon help
+  -c CEPHCONF, --conf CEPHCONF
+                        ceph configuration file
+  -i INPUT_FILE, --in-file INPUT_FILE
+                        input file
+  -o OUTPUT_FILE, --out-file OUTPUT_FILE
+                        output file
+  --id CLIENT_ID, --user CLIENT_ID
+                        client id for authentication
+  --name CLIENT_NAME, -n CLIENT_NAME
+                        client name for authentication
+  --cluster CLUSTER     cluster name
+  --admin-daemon ADMIN_SOCKET
+                        submit admin-socket commands ("help" for help
+  --admin-socket ADMIN_SOCKET_NOPE
+                        you probably mean --admin-daemon
+  -s, --status          show cluster status
+  -w, --watch           watch live cluster changes
+  --watch-debug         watch debug events
+  --watch-info          watch info events
+  --watch-sec           watch security events
+  --watch-warn          watch warn events
+  --watch-error         watch error events
+  --version, -v         display version
+  --verbose             make verbose
+  --concise             make less verbose
+  -f {json,json-pretty,xml,xml-pretty,plain}, --format {json,json-pretty,xml,xml-pretty,plain}
+  --connect-timeout CLUSTER_TIMEOUT
+                        set a timeout for connecting to the cluster
+
+ Monitor commands:
+ =================
+[Contacting monitor, timeout after 5 seconds]
+
+
+
+
+
+
+
+compact                                  cause compaction of monitor's leveldb
+                                          storage (DEPRECATED)
+config-key del <key>                     delete <key>
+config-key exists <key>                  check for <key>'s existence
+config-key get <key>                     get <key>
+config-key list                          list keys
+config-key put <key> {<val>}             put <key>, value <val>
+config-key rm <key>                      rm <key>
+df {detail}                              show cluster free space stats
+fs add_data_pool <fs_name> <pool>        add data pool <pool>
+fs dump {<int[0-]>}                      dump all CephFS status, optionally
+                                          from epoch
+fs flag set enable_multiple <val> {--    Set a global CephFS flag
+ yes-i-really-mean-it}
+fs get <fs_name>                         get info about one filesystem
+fs ls                                    list filesystems
+fs new <fs_name> <metadata> <data>       make new filesystem using named pools
+                                          <metadata> and <data>
+fs reset <fs_name> {--yes-i-really-mean- disaster recovery only: reset to a
+ it}                                      single-MDS map
+fs rm <fs_name> {--yes-i-really-mean-it} disable the named filesystem
+fs rm_data_pool <fs_name> <pool>         remove data pool <pool>
+fs set <fs_name> max_mds|max_file_size|  set mds parameter <var> to <val>
+ allow_new_snaps|inline_data|cluster_
+ down|allow_multimds|allow_dirfrags
+ <val> {<confirm>}
+fs set_default <fs_name>                 set the default to the named filesystem
+fsid                                     show cluster FSID/UUID
+health {detail}                          show cluster health
+heap dump|start_profiler|stop_profiler|  show heap usage info (available only
+ release|stats                            if compiled with tcmalloc)
+injectargs <injected_args> [<injected_   inject config arguments into monitor
+ args>...]
+log <logtext> [<logtext>...]             log supplied text to the monitor log
+mds add_data_pool <pool>                 add data pool <pool>
+mds cluster_down                         take MDS cluster down
+mds cluster_up                           bring MDS cluster up
+mds compat rm_compat <int[0-]>           remove compatible feature
+mds compat rm_incompat <int[0-]>         remove incompatible feature
+mds compat show                          show mds compatibility settings
+mds deactivate <who>                     stop mds
+mds dump {<int[0-]>}                     dump legacy MDS cluster info,
+                                          optionally from epoch
+mds fail <who>                           force mds to status failed
+mds getmap {<int[0-]>}                   get MDS map, optionally from epoch
+mds metadata <who>                       fetch metadata for mds <who>
+mds newfs <int[0-]> <int[0-]> {--yes-i-  make new filesystem using pools
+ really-mean-it}                          <metadata> and <data>
+mds remove_data_pool <pool>              remove data pool <pool>
+mds repaired <rank>                      mark a damaged MDS rank as no longer
+                                          damaged
+mds rm <int[0-]>                         remove nonactive mds
+mds rm_data_pool <pool>                  remove data pool <pool>
+mds rmfailed <who> {<confirm>}           remove failed mds
+mds set max_mds|max_file_size|allow_new_ set mds parameter <var> to <val>
+ snaps|inline_data|allow_multimds|allow_
+ dirfrags <val> {<confirm>}
+mds set_max_mds <int[0-]>                set max MDS index
+mds set_state <int[0-]> <int[0-20]>      set mds state of <gid> to <numeric-
+                                          state>
+mds stat                                 show MDS status
+mds stop <who>                           stop mds
+mds tell <who> <args> [<args>...]        send command to particular mds
+
+
+
+
+
+
+
+
+
+node ls {all|osd|mon|mds}                list all nodes in cluster [type]
+
+
+
+
+
+
+pg debug unfound_objects_exist|degraded_ show debug info about pgs
+ pgs_exist
+pg deep-scrub <pgid>                     start deep-scrub on <pgid>
+pg dump {all|summary|sum|delta|pools|    show human-readable versions of pg map
+ osds|pgs|pgs_brief [all|summary|sum|     (only 'all' valid with plain)
+ delta|pools|osds|pgs|pgs_brief...]}
+pg dump_json {all|summary|sum|pools|     show human-readable version of pg map
+ osds|pgs [all|summary|sum|pools|osds|    in json only
+ pgs...]}
+pg dump_pools_json                       show pg pools info in json only
+pg dump_stuck {inactive|unclean|stale|   show information about stuck pgs
+ undersized|degraded [inactive|unclean|
+ stale|undersized|degraded...]} {<int>}
+pg force_create_pg <pgid>                force creation of pg <pgid>
+pg getmap                                get binary pg map to -o/stdout
+pg ls {<int>} {active|clean|down|replay| list pg with specific pool, osd, state
+ splitting|scrubbing|scrubq|degraded|
+ inconsistent|peering|repair|recovering|
+ backfill_wait|incomplete|stale|
+ remapped|deep_scrub|backfill|backfill_
+ toofull|recovery_wait|undersized|
+ activating|peered [active|clean|down|
+ replay|splitting|scrubbing|scrubq|
+ degraded|inconsistent|peering|repair|
+ recovering|backfill_wait|incomplete|
+ stale|remapped|deep_scrub|backfill|
+ backfill_toofull|recovery_wait|
+ undersized|activating|peered...]}
+pg ls-by-osd <osdname (id|osd.id)>       list pg on osd [osd]
+ {<int>} {active|clean|down|replay|
+ splitting|scrubbing|scrubq|degraded|
+ inconsistent|peering|repair|recovering|
+ backfill_wait|incomplete|stale|
+ remapped|deep_scrub|backfill|backfill_
+ toofull|recovery_wait|undersized|
+ activating|peered [active|clean|down|
+ replay|splitting|scrubbing|scrubq|
+ degraded|inconsistent|peering|repair|
+ recovering|backfill_wait|incomplete|
+ stale|remapped|deep_scrub|backfill|
+ backfill_toofull|recovery_wait|
+ undersized|activating|peered...]}
+pg ls-by-pool <poolstr> {active|clean|   list pg with pool = [poolname | poolid]
+ down|replay|splitting|scrubbing|scrubq|
+ degraded|inconsistent|peering|repair|
+ recovering|backfill_wait|incomplete|
+ stale|remapped|deep_scrub|backfill|
+ backfill_toofull|recovery_wait|
+ undersized|activating|peered [active|
+ clean|down|replay|splitting|scrubbing|
+ scrubq|degraded|inconsistent|peering|
+ repair|recovering|backfill_wait|
+ incomplete|stale|remapped|deep_scrub|
+ backfill|backfill_toofull|recovery_
+ wait|undersized|activating|peered...]}
+pg ls-by-primary <osdname (id|osd.id)>   list pg with primary = [osd]
+ {<int>} {active|clean|down|replay|
+ splitting|scrubbing|scrubq|degraded|
+ inconsistent|peering|repair|recovering|
+ backfill_wait|incomplete|stale|
+ remapped|deep_scrub|backfill|backfill_
+ toofull|recovery_wait|undersized|
+ activating|peered [active|clean|down|
+ replay|splitting|scrubbing|scrubq|
+ degraded|inconsistent|peering|repair|
+ recovering|backfill_wait|incomplete|
+ stale|remapped|deep_scrub|backfill|
+ backfill_toofull|recovery_wait|
+ undersized|activating|peered...]}
+pg map <pgid>                            show mapping of pg to osds
+pg repair <pgid>                         start repair on <pgid>
+pg scrub <pgid>                          start scrub on <pgid>
+pg send_pg_creates                       trigger pg creates to be issued
+pg set_full_ratio <float[0.0-1.0]>       set ratio at which pgs are considered
+                                          full
+pg set_nearfull_ratio <float[0.0-1.0]>   set ratio at which pgs are considered
+                                          nearly full
+pg stat                                  show placement group status.
+quorum enter|exit                        enter or exit quorum
+quorum_status                            report status of monitor quorum
+report {<tags> [<tags>...]}              report full status of cluster,
+                                          optional title tag strings
+scrub                                    scrub the monitor stores (DEPRECATED)
+status                                   show cluster status
+sync force {--yes-i-really-mean-it} {--  force sync of and clear monitor store (
+ i-know-what-i-am-doing}                  DEPRECATED)
+tell <name (type.id)> <args> [<args>...] send a command to a specific daemon
+version                                  show mon daemon version
+[root@nl-cloud-ceph-1 ~]#

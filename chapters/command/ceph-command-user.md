@@ -45,34 +45,80 @@ namespace(命名空间)是池中对象的逻辑分组，池中的对象可以被
 
 
 
-## 认证管理
+## 用户管理
+ceph中用户管理的子命令是auth
 
-### 查看认证列表
-查看认证列表  
+
+### 添加用户
+命令格式是
+
+```
+# auth add <entity> {<caps> [<caps>...]}
+```
+
+比如，添加一个名为frank6866的用户，在mon上具有读权限，在cinder-back这个pool上具有读写的权限:  
+
+```
+# ceph auth add client.frank6866 mon 'allow r' osd 'allow rw pool=cinder-backup'
+added key for client.frank6866
+```
+
+### 查看用户列表
 
 ```
 # ceph auth list
 installed auth entries:
 ......
-client.admin
+client.frank6866
 	key: xxx
-	caps: [mds] allow *
-	caps: [mon] allow *
-	caps: [osd] allow *
+	caps: [mon] allow r
+	caps: [osd] allow rw pool=cinder-backup
 ......
 ```
 
 
+### 获取某个用户的认证信息
+
+```
+# ceph auth get client.frank6866
+exported keyring for client.frank6866
+[client.frank6866]
+	key = xxx
+	caps mon = "allow r"
+	caps osd = "allow rw pool=cinder-backup"
+```	
 
 
+### 导出用户
+导出client.frank6866用户到client.frank6866.auth文件中
+
+```
+# ceph auth export client.frank6866 -o client.frank6866.auth
+```
+
+查看导出的文件内容:  
+
+```
+# cat client.frank6866.auth
+[client.frank6866]
+	key = AQC9vSFZCC/7NBAA5oGudHTnunQGu/QmbyK22A==
+	caps mon = "allow r"
+	caps osd = "allow rw pool=cinder-backup"
+```
 
 
+### 删除用户
+删除client.frank6866用户
+
+```
+# ceph auth del client.frank6866
+```
 
 
+### 导入用户
+从client.frank6866.auth文件中导入client.frank6866用户
 
-
-
-
-
-
-
+```
+# ceph auth import -i client.frank6866.auth
+imported keyring
+```
