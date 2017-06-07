@@ -8,7 +8,7 @@ ceph     22937     1  0 Mar02 ?        15:46:29 /usr/bin/ceph-mon -f --cluster c
 ceph     23849     1  3 Mar02 ?        2-13:36:15 /usr/bin/ceph-osd -f --cluster ceph --id 10 --setuser ceph --setgroup ceph
 ceph     24014     1  2 Mar02 ?        2-00:58:38 /usr/bin/ceph-osd -f --cluster ceph --id 11 --setuser ceph --setgroup ceph
 ceph     24177     1  3 Mar02 ?        2-12:34:28 /usr/bin/ceph-osd -f --cluster ceph --id 9 --setuser ceph --setgroup ceph
-ceph     24970     1  0 Mar02 ?        04:23:39 /usr/bin/radosgw -f --cluster ceph --name client.rgw.nl-cloud-ceph-3 --se
+ceph     24970     1  0 Mar02 ?        04:23:39 /usr/bin/radosgw -f --cluster ceph --name client.rgw.ceph-3 --se
 ```
 
 创建osd可以使用ceph-deploy工具。
@@ -65,9 +65,9 @@ MIN/MAX VAR: 0.74/1.21  STDDEV: 1.13
 # ceph osd find 0
 {
     "osd": 0,
-    "ip": "10.12.10.75:6800\/2101",
+    "ip": "10.10.10.75:6800\/2101",
     "crush_location": {
-        "host": "nl-cloud-dyc-ceph-1",
+        "host": "ceph-1",
         "root": "default"
     }
 }
@@ -92,7 +92,7 @@ LISTEN     0      128                       *:6803                     *:*      
 {
     "id": 1,
     "arch": "x86_64",
-    "back_addr": "10.12.10.26:6801\/154023",
+    "back_addr": "10.10.10.26:6801\/154023",
     "backend_filestore_dev_node": "unknown",
     "backend_filestore_partition_path": "unknown",
     "ceph_version": "ceph version 10.2.5-6099-gd9eaab4 (d9eaab456ff45ae88e83bd633f0c4efb5902bf07)",
@@ -102,10 +102,10 @@ LISTEN     0      128                       *:6803                     *:*      
     "distro_version": "7",
     "filestore_backend": "xfs",
     "filestore_f_type": "0x58465342",
-    "front_addr": "10.12.10.26:6800\/154023",
-    "hb_back_addr": "10.12.10.26:6803\/154023",
-    "hb_front_addr": "10.12.10.26:6804\/154023",
-    "hostname": "nl-cloud-ceph-1",
+    "front_addr": "10.10.10.26:6800\/154023",
+    "hb_back_addr": "10.10.10.26:6803\/154023",
+    "hb_front_addr": "10.10.10.26:6804\/154023",
+    "hostname": "ceph-1",
     "kernel_description": "#1 SMP Fri Mar 6 11:36:42 UTC 2015",
     "kernel_version": "3.10.0-229.el7.x86_64",
     "mem_swap_kb": "4194300",
@@ -130,16 +130,16 @@ LISTEN     0      128                       *:6803                     *:*      
 # ceph osd tree
 ID WEIGHT  TYPE NAME                UP/DOWN REWEIGHT PRIMARY-AFFINITY
 -1 8.73654 root default
--2 3.51538     host nl-cloud-ceph-1
+-2 3.51538     host ceph-1
  3 0.86909         osd.3                 up  1.00000          1.00000
  4 0.86909         osd.4                 up  0.98000          1.00000
  5 0.86909         osd.5                 up  1.00000          1.00000
  1 0.90810         osd.1               down        0          1.00000
--3 2.61058     host nl-cloud-ceph-2
+-3 2.61058     host ceph-2
  6 0.87019         osd.6                 up  1.00000          1.00000
  7 0.87019         osd.7                 up  0.79999          1.00000
  8 0.87019         osd.8                 up  1.00000          1.00000
--4 2.61058     host nl-cloud-ceph-3
+-4 2.61058     host ceph-3
  9 0.87019         osd.9                 up  0.98999          1.00000
 10 0.87019         osd.10                up  1.00000          1.00000
 11 0.87019         osd.11                up  0.98000          1.00000
@@ -153,8 +153,24 @@ ID WEIGHT  TYPE NAME                UP/DOWN REWEIGHT PRIMARY-AFFINITY
 
 
 
+## 查看osd map的概要信息
 
+```
+# ceph osd dump
+epoch 38
+fsid c712f08b-c001-4b1c-969d-abec240138f7
+created 2017-03-16 17:52:12.901166
+modified 2017-06-03 16:53:28.572763
+flags sortbitwise,require_jewel_osds
+pool 0 'rbd' replicated size 3 min_size 2 crush_ruleset 0 object_hash rjenkins pg_num 64 pgp_num 64 last_change 1 flags hashpspool stripe_width 0
+pool 1 'pool-frank6866' replicated size 3 min_size 2 crush_ruleset 0 object_hash rjenkins pg_num 128 pgp_num 128 last_change 37 flags hashpspool stripe_width 0
+max_osd 3
+osd.0 up   in  weight 1 up_from 28 up_thru 37 down_at 26 last_clean_interval [23,25) 10.10.10.75:6800/2101 10.10.10.75:6801/2101 10.10.10.75:6802/2101 10.10.10.75:6803/2101 exists,up 79b807fa-d0cd-4d70-a47b-acd4148c9d16
+osd.1 up   in  weight 1 up_from 8 up_thru 37 down_at 0 last_clean_interval [0,0) 10.10.10.76:6800/20176 10.10.10.76:6801/20176 10.10.10.76:6802/20176 10.10.10.76:6803/20176 exists,up 9dded204-2d3b-4a5d-a820-d817385a0e35
+osd.2 up   in  weight 1 up_from 13 up_thru 37 down_at 0 last_clean_interval [0,0) 10.10.10.77:6800/20546 10.10.10.77:6801/20546 10.10.10.77:6802/20546 10.10.10.77:6803/20546 exists,up 7d01124b-c6f9-46cd-b32b-34aa40493621
+```
 
+还可以看到pool的信息
 
 
 

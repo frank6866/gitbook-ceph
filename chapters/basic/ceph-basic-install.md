@@ -11,9 +11,9 @@
 
 | ceph角色 | 主机名  | ip地址  | 配置 | 存储
 | -------|---------|-----|---------------|--------------
-| MON+OSD+ceph-deploy | nl-cloud-dyc-ceph-1 | 10.12.10.75 | 2c4G | vda(16G，系统盘), vdb(50G，数据盘)
-| MON+OSD | nl-cloud-dyc-ceph-2 | 10.12.10.76 | 2c4G | vda(16G，系统盘), vdb(50G，数据盘)
-| MON+OSD | nl-cloud-dyc-ceph-3 | 10.12.10.77 | 2c4G | vda(16G，系统盘), vdb(50G，数据盘)
+| MON+OSD+ceph-deploy | ceph-1 | 10.10.10.75 | 2c4G | vda(16G，系统盘), vdb(50G，数据盘)
+| MON+OSD | ceph-2 | 10.10.10.76 | 2c4G | vda(16G，系统盘), vdb(50G，数据盘)
+| MON+OSD | ceph-3 | 10.10.10.77 | 2c4G | vda(16G，系统盘), vdb(50G，数据盘)
 
 
 
@@ -30,12 +30,12 @@
 ## DNS配置
 **如果主机名已加入DNS解析，这步可以忽略。**  
 
-这里使用在/etc/hosts中配置，在nl-cloud-dyc-ceph-1、nl-cloud-dyc-ceph-2和nl-cloud-dyc-ceph-3上的/etc/hosts文件中，均增加以下内容:  
+这里使用在/etc/hosts中配置，在ceph-1、ceph-2和ceph-3上的/etc/hosts文件中，均增加以下内容:
 
 ```
-10.12.10.75    nl-cloud-dyc-ceph-1
-10.12.10.76    nl-cloud-dyc-ceph-2
-10.12.10.77    nl-cloud-dyc-ceph-3
+10.10.10.75    ceph-1
+10.10.10.76    ceph-2
+10.10.10.77    ceph-3
 ```
 
 
@@ -49,13 +49,13 @@
 
 
 
-所有节点上都有centos用户，使用nl-cloud-dyc-ceph-1作为ceph deploy机器，在nl-cloud-dyc-ceph-1上创建centos用户的密钥对，并将公钥拷贝到nl-cloud-dyc-ceph-2和nl-cloud-dyc-ceph-3上。  
+所有节点上都有centos用户，使用ceph-1作为ceph deploy机器，在ceph-1上创建centos用户的密钥对，并将公钥拷贝到ceph-2和ceph-3上。
 
 ```
-[root@nl-cloud-dyc-ceph-1 ~]$ ssh-keygen -t rsa
-[root@nl-cloud-dyc-ceph-1 ~]$ ssh-copy-id root@nl-cloud-dyc-ceph-1
-[root@nl-cloud-dyc-ceph-1 ~]$ ssh-copy-id root@nl-cloud-dyc-ceph-2
-[root@nl-cloud-dyc-ceph-1 ~]$ ssh-copy-id root@nl-cloud-dyc-ceph-3
+[root@ceph-1 ~]$ ssh-keygen -t rsa
+[root@ceph-1 ~]$ ssh-copy-id root@ceph-1
+[root@ceph-1 ~]$ ssh-copy-id root@ceph-2
+[root@ceph-1 ~]$ ssh-copy-id root@ceph-3
 ```
 
 ## 配置yum源
@@ -79,18 +79,18 @@ gpgkey=https://download.ceph.com/keys/release.asc
 
 # 安装
 ## 安装ceph-deploy
-> [root@nl-cloud-dyc-ceph-1 ~]$ sudo yum install ceph-deploy
+> [root@ceph-1 ~]$ sudo yum install ceph-deploy
 
 ## MON
-> [root@nl-cloud-dyc-ceph-1 ~]# ceph-deploy new nl-cloud-dyc-ceph-1 nl-cloud-dyc-ceph-2 nl-cloud-dyc-ceph-3
+> [root@ceph-1 ~]# ceph-deploy new ceph-1 ceph-2 ceph-3
 
 执行完成后，会在当前目录下生成一个名为**ceph.conf**的文件，如下：  
 
 ```
 [global]
 fsid = c712f08b-c001-4b1c-969d-abec240138f7
-mon_initial_members = nl-cloud-dyc-ceph-1, nl-cloud-dyc-ceph-2, nl-cloud-dyc-ceph-3
-mon_host = 10.12.10.75,10.12.10.76,10.12.10.77
+mon_initial_members = ceph-1, ceph-2, ceph-3
+mon_host = 10.10.10.75,10.10.10.76,10.10.10.77
 auth_cluster_required = cephx
 auth_service_required = cephx
 auth_client_required = cephx
@@ -99,7 +99,7 @@ auth_client_required = cephx
 
 安装
 
-> [root@nl-cloud-dyc-ceph-1 ~]# ceph-deploy install nl-cloud-dyc-ceph-1 nl-cloud-dyc-ceph-2 nl-cloud-dyc-ceph-3
+> [root@ceph-1 ~]# ceph-deploy install ceph-1 ceph-2 ceph-3
 
 > ceph-deploy mon create-initial
 
@@ -108,9 +108,9 @@ auth_client_required = cephx
 
 
 ```
-[root@nl-cloud-dyc-ceph-1 ~]# ceph-deploy osd create nl-cloud-dyc-ceph-1:/dev/sdb
-[root@nl-cloud-dyc-ceph-1 ~]# ceph-deploy osd create nl-cloud-dyc-ceph-2:/dev/sdb
-[root@nl-cloud-dyc-ceph-1 ~]# ceph-deploy osd create nl-cloud-dyc-ceph-3:/dev/sdb
+[root@ceph-1 ~]# ceph-deploy osd create ceph-1:/dev/sdb
+[root@ceph-1 ~]# ceph-deploy osd create ceph-2:/dev/sdb
+[root@ceph-1 ~]# ceph-deploy osd create ceph-3:/dev/sdb
 ```
 
 ## 查看集群状态
@@ -124,11 +124,11 @@ auth_client_required = cephx
 1. 错误1
 
 ```
-[nl-cloud-dyc-ceph-2][INFO  ] Running command: ssh -CT -o BatchMode=yes nl-cloud-dyc-ceph-2
+[ceph-2][INFO  ] Running command: ssh -CT -o BatchMode=yes ceph-2
 [ceph_deploy.new][WARNIN] could not connect via SSH
 [ceph_deploy.new][INFO  ] will connect again with password prompt
 Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
-[ceph_deploy][ERROR ] RuntimeError: connecting to host: nl-cloud-dyc-ceph-2 resulted in errors: HostNotFound nl-cloud-dyc-ceph-2
+[ceph_deploy][ERROR ] RuntimeError: connecting to host: ceph-2 resulted in errors: HostNotFound ceph-2
 ```
 
 将/etc/sudoers文件中的  
@@ -147,14 +147,14 @@ Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
 
 
 
-Host nl-cloud-dyc-ceph-1
-    Hostname nl-cloud-dyc-ceph-1
+Host ceph-1
+    Hostname ceph-1
     User centos
-Host nl-cloud-dyc-ceph-2
-    Hostname nl-cloud-dyc-ceph-2
+Host ceph-2
+    Hostname ceph-2
     User centos
-Host nl-cloud-dyc-ceph-3
-    Hostname nl-cloud-dyc-ceph-3
+Host ceph-3
+    Hostname ceph-3
     User centos
 
 
@@ -167,12 +167,12 @@ Host nl-cloud-dyc-ceph-3
 http://docs.ceph.com/ceph-deploy/docs/
 
 ```
-[root@nl-cloud-dyc-ceph-1 ~]# yum -y install epel-release
-[root@nl-cloud-dyc-ceph-1 ~]# yum -y install python-pip
-[root@nl-cloud-dyc-ceph-1 ~]# pip install ceph-deploy
+[root@ceph-1 ~]# yum -y install epel-release
+[root@ceph-1 ~]# yum -y install python-pip
+[root@ceph-1 ~]# pip install ceph-deploy
 ```
 
-> [root@nl-cloud-dyc-ceph-1 ~]# vi /etc/ssh/sshd_config
+> [root@ceph-1 ~]# vi /etc/ssh/sshd_config
 
 ```
 ...
@@ -182,7 +182,7 @@ PermitEmptyPasswords yes
 ```
 
 
-> [root@nl-cloud-dyc-ceph-1 ~]# ssh-keygen -t rsa
+> [root@ceph-1 ~]# ssh-keygen -t rsa
 
 
 

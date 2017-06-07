@@ -1,0 +1,57 @@
+osd crush add <osdname (id|osd.id)>      add or update crushmap position and
+ <float[0.0-]> <args> [<args>...]         weight for <name> with <weight> and
+                                          location <args>
+osd crush add-bucket <name> <type>       add no-parent (probably root) crush
+                                          bucket <name> of type <type>
+osd crush create-or-move <osdname (id|   create entry or move existing entry
+ osd.id)> <float[0.0-]> <args> [<args>..  for <name> <weight> at/to location
+ .]                                       <args>
+osd crush dump                           dump crush map
+osd crush get-tunable straw_calc_version get crush tunable <tunable>
+osd crush link <name> <args> [<args>...] link existing entry for <name> under
+                                          location <args>
+osd crush move <name> <args> [<args>...] move existing entry for <name> to
+                                          location <args>
+osd crush remove <name> {<ancestor>}     remove <name> from crush map (
+                                          everywhere, or just at <ancestor>)
+osd crush rename-bucket <srcname>        rename bucket <srcname> to <dstname>
+ <dstname>
+osd crush reweight <name> <float[0.0-]>  change <name>'s weight to <weight> in
+                                          crush map
+osd crush reweight-all                   recalculate the weights for the tree
+                                          to ensure they sum correctly
+osd crush reweight-subtree <name>        change all leaf items beneath <name>
+ <float[0.0-]>                            to <weight> in crush map
+osd crush rm <name> {<ancestor>}         remove <name> from crush map (
+                                          everywhere, or just at <ancestor>)
+osd crush rule create-erasure <name>     create crush rule <name> for erasure
+ {<profile>}                              coded pool created with <profile> (
+                                          default default)
+osd crush rule create-simple <name>      create crush rule <name> to start from
+ <root> <type> {firstn|indep}             <root>, replicate across buckets of
+                                          type <type>, using a choose mode of
+                                          <firstn|indep> (default firstn; indep
+                                          best for erasure pools)
+osd crush rule dump {<name>}             dump crush rule <name> (default all)
+osd crush rule list                      list crush rules
+osd crush rule ls                        list crush rules
+osd crush rule rm <name>                 remove crush rule <name>
+osd crush set                            set crush map from input file
+osd crush set <osdname (id|osd.id)>      update crushmap position and weight
+ <float[0.0-]> <args> [<args>...]         for <name> to <weight> with location
+                                          <args>
+osd crush set-tunable straw_calc_        set crush tunable <tunable> to <value>
+ version <int>
+osd crush show-tunables                  show current crush tunables
+osd crush tree                           dump crush buckets and items in a tree
+                                          view
+osd crush tunables legacy|argonaut|      set crush tunables values to <profile>
+ bobtail|firefly|hammer|jewel|optimal|
+ default
+osd crush unlink <name> {<ancestor>}     unlink <name> from crush map (
+                                          everywhere, or just at <ancestor>)
+osd deep-scrub <who>                     initiate deep scrub on osd <who>
+
+
+
+

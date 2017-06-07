@@ -1,4 +1,4 @@
-[root@nl-cloud-ceph-1 ~]# ceph -h
+[root@ceph-1 ~]# ceph -h
 
  General usage:
  ==============
@@ -220,4 +220,4 @@ sync force {--yes-i-really-mean-it} {--  force sync of and clear monitor store (
  i-know-what-i-am-doing}                  DEPRECATED)
 tell <name (type.id)> <args> [<args>...] send a command to a specific daemon
 version                                  show mon daemon version
-[root@nl-cloud-ceph-1 ~]#
+[root@ceph-1 ~]#

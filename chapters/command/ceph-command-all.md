@@ -342,7 +342,7 @@ gid可以从ceph fs dump中获取
 ```
 Standby daemons:
  
-383093: 10.12.10.28:6814/32226 'nl-cloud-ceph-3' mds.-1.0 up:standby seq 1065
+383093: 10.10.10.28:6814/32226 'ceph-3' mds.-1.0 up:standby seq 1065
 ```
 
 383093为节点gid

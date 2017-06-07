@@ -12,18 +12,18 @@
         "modified": "2016-12-25 09:46:57.098524",
         "mons": [
             {
-                "addr": "10.12.10.26:6789/0",
-                "name": "nl-cloud-ceph-1",
+                "addr": "10.10.10.26:6789/0",
+                "name": "ceph-1",
                 "rank": 0
             },
             {
-                "addr": "10.12.10.27:6789/0",
-                "name": "nl-cloud-ceph-2",
+                "addr": "10.10.10.27:6789/0",
+                "name": "ceph-2",
                 "rank": 1
             },
             {
-                "addr": "10.12.10.28:6789/0",
-                "name": "nl-cloud-ceph-3",
+                "addr": "10.10.10.28:6789/0",
+                "name": "ceph-3",
                 "rank": 2
             }
         ]
@@ -33,11 +33,11 @@
         1,
         2
     ],
-    "quorum_leader_name": "nl-cloud-ceph-1",
+    "quorum_leader_name": "ceph-1",
     "quorum_names": [
-        "nl-cloud-ceph-1",
-        "nl-cloud-ceph-2",
-        "nl-cloud-ceph-3"
+        "ceph-1",
+        "ceph-2",
+        "ceph-3"
     ]
 }
 ```
@@ -67,23 +67,23 @@
         "modified": "2016-12-25 09:46:57.098524",
         "mons": [
             {
-                "addr": "10.12.10.26:6789/0",
-                "name": "nl-cloud-ceph-1",
+                "addr": "10.10.10.26:6789/0",
+                "name": "ceph-1",
                 "rank": 0
             },
             {
-                "addr": "10.12.10.27:6789/0",
-                "name": "nl-cloud-ceph-2",
+                "addr": "10.10.10.27:6789/0",
+                "name": "ceph-2",
                 "rank": 1
             },
             {
-                "addr": "10.12.10.28:6789/0",
-                "name": "nl-cloud-ceph-3",
+                "addr": "10.10.10.28:6789/0",
+                "name": "ceph-3",
                 "rank": 2
             }
         ]
     },
-    "name": "nl-cloud-ceph-2",
+    "name": "ceph-2",
     "outside_quorum": [],
     "quorum": [
         0,
@@ -104,7 +104,7 @@
 ## 查看Monitor概要信息
 ```
 # ceph mon stat
-e5: 3 mons at {nl-cloud-ceph-1=10.12.10.26:6789/0,nl-cloud-ceph-2=10.12.10.27:6789/0,nl-cloud-ceph-3=10.12.10.28:6789/0}, election epoch 118, quorum 0,1,2 nl-cloud-ceph-1,nl-cloud-ceph-2,nl-cloud-ceph-3
+e5: 3 mons at {ceph-1=10.10.10.26:6789/0,ceph-2=10.10.10.27:6789/0,ceph-3=10.10.10.28:6789/0}, election epoch 118, quorum 0,1,2 ceph-1,ceph-2,ceph-3
 ```
 
 * e5: 表示当前monmap的版本是第5版
@@ -113,22 +113,22 @@ e5: 3 mons at {nl-cloud-ceph-1=10.12.10.26:6789/0,nl-cloud-ceph-2=10.12.10.27:67
 
 ## 移除Monitor
 ```
-# ceph mon remove nl-cloud-dyc-ceph-1
-Error EINVAL: removing mon.nl-cloud-dyc-ceph-1 at 10.12.10.75:6789/0, there will be 2 monitors
+# ceph mon remove ceph-1
+Error EINVAL: removing mon.ceph-1 at 10.10.10.75:6789/0, there will be 2 monitors
 
 # ceph mon stat
-7f6b0032e700  0 -- :/3940951470 >> 10.12.10.75:6789/0 pipe(0x7f6afc05cda0 sd=3 :0 s=1 pgs=0 cs=0 l=1 c=0x7f6afc05e060).fault
-e2: 2 mons at {nl-cloud-dyc-ceph-2=10.12.10.76:6789/0,nl-cloud-dyc-ceph-3=10.12.10.77:6789/0}, election epoch 20, quorum 0,1 nl-cloud-dyc-ceph-2,nl-cloud-dyc-ceph-3
+7f6b0032e700  0 -- :/3940951470 >> 10.10.10.75:6789/0 pipe(0x7f6afc05cda0 sd=3 :0 s=1 pgs=0 cs=0 l=1 c=0x7f6afc05e060).fault
+e2: 2 mons at {ceph-2=10.10.10.76:6789/0,ceph-3=10.10.10.77:6789/0}, election epoch 20, quorum 0,1 ceph-2,ceph-3
 ```
 
 ## 添加Monitor
 
 ```
-# ceph mon add nl-cloud-dyc-ceph-1 10.12.10.75:6789
-adding mon.nl-cloud-dyc-ceph-1 at 10.12.10.75:6789/0
+# ceph mon add ceph-1 10.10.10.75:6789
+adding mon.ceph-1 at 10.10.10.75:6789/0
 
 # ceph mon stat
-e3: 3 mons at {nl-cloud-dyc-ceph-1=10.12.10.75:6789/0,nl-cloud-dyc-ceph-2=10.12.10.76:6789/0,nl-cloud-dyc-ceph-3=10.12.10.77:6789/0}, election epoch 22, quorum 1,2 nl-cloud-dyc-ceph-2,nl-cloud-dyc-ceph-3
+e3: 3 mons at {ceph-1=10.10.10.75:6789/0,ceph-2=10.10.10.76:6789/0,ceph-3=10.10.10.77:6789/0}, election epoch 22, quorum 1,2 ceph-2,ceph-3
 ```
 
 
@@ -142,9 +142,9 @@ epoch 3
 fsid c712f08b-c001-4b1c-969d-abec240138f7
 last_changed 2017-05-30 15:48:18.601129
 created 2017-03-16 17:52:01.252939
-0: 10.12.10.75:6789/0 mon.nl-cloud-dyc-ceph-1
-1: 10.12.10.76:6789/0 mon.nl-cloud-dyc-ceph-2
-2: 10.12.10.77:6789/0 mon.nl-cloud-dyc-ceph-3
+0: 10.10.10.75:6789/0 mon.ceph-1
+1: 10.10.10.76:6789/0 mon.ceph-2
+2: 10.10.10.77:6789/0 mon.ceph-3
 ```
 
 如果不加入版本号，默认获取最新的monmap
@@ -156,16 +156,16 @@ epoch 3
 fsid c712f08b-c001-4b1c-969d-abec240138f7
 last_changed 2017-05-30 15:48:18.601129
 created 2017-03-16 17:52:01.252939
-0: 10.12.10.75:6789/0 mon.nl-cloud-dyc-ceph-1
-1: 10.12.10.76:6789/0 mon.nl-cloud-dyc-ceph-2
-2: 10.12.10.77:6789/0 mon.nl-cloud-dyc-ceph-3
+0: 10.10.10.75:6789/0 mon.ceph-1
+1: 10.10.10.76:6789/0 mon.ceph-2
+2: 10.10.10.77:6789/0 mon.ceph-3
 ```
 
 
 ## 获取Monitor的metadata
 
 ```
-# ceph mon metadata nl-cloud-dyc-ceph-1
+# ceph mon metadata ceph-1
 {
     "arch": "x86_64",
     "cpu": "Intel(R) Xeon(R) CPU E5-2420 v2 @ 2.20GHz",
@@ -173,7 +173,7 @@ created 2017-03-16 17:52:01.252939
     "distro_codename": "Core",
     "distro_description": "CentOS Linux release 7.1.1503 (Core) ",
     "distro_version": "7.1.1503",
-    "hostname": "nl-cloud-dyc-ceph-1",
+    "hostname": "ceph-1",
     "kernel_description": "#1 SMP Fri Mar 6 11:36:42 UTC 2015",
     "kernel_version": "3.10.0-229.el7.x86_64",
     "mem_swap_kb": "1679356",

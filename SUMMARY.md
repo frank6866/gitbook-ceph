@@ -6,8 +6,15 @@
 * 基础
     * [Ceph常见概念](chapters/basic/ceph-basic-concept.md)
     * [安装](chapters/basic/ceph-basic-install.md)
+    * [osd/pool/pg](chapters/basic/ceph-basic-osd-pool-pg.md)
+    * [Ceph故障域](chapters/basic/ceph-failure-domains.md)
     * [Ceph常用端口](chapters/basic/ceph-basic-port.md)
     * [weight和reweight](chapters/basic/ceph-basic-weight.md)
+
+-----
+* 原理
+    * [ceph存储对象的过程](chapters/concept/ceph-concept-store-process.md)
+    * [CURSH](chapters/concept/ceph-concept-crush.md)
 
 -----
 * 常用命令
@@ -18,6 +25,20 @@
     * [monitor管理](chapters/command/ceph-command-monitor.md)
     * [osd管理](chapters/command/ceph-command-osd.md)
     * [pool管理](chapters/command/ceph-command-osd-pool.md)
+    * [crush管理](chapters/command/ceph-command-osd-crush.md)
+    * [rados](chapters/command/ceph-command-rados.md)
+
+-----
+* RGW
+    * [rgw简介](chapters/rgw/ceph-rgw-introduction.md)
+    * [radosgw命令](chapters/rgw/ceph-rgw-radosgw.md)
+    * [radosgw-object-expirer命令](chapters/rgw/ceph-rgw-radosgw-object-expirer.md)
+    * [radosgw-admin命令](chapters/rgw/ceph-rgw-radosgw-admin.md)
+    * [radosgw-token命令](chapters/rgw/ceph-rgw-radosgw-token.md)
+    * [s3cmd](chapters/rgw/ceph-rgw-s3cmd.md)
+    * [S3简介](chapters/rgw/s3-introduction.md)
+    * [S3的SLA规则](chapters/rgw/s3-sla.md)
+    * [s3cmd创建bucket异常](chapters/rgw/ceph-rgw-s3cmd-mb-exception.md)
 
 -----
 * [运维操作](chapters/ops/ceph-ops.md)
@@ -37,11 +58,6 @@
 -----
 * 日志管理
     * [Ceph日志简介](chapters/log/ceph-log-introduction.md)
-
------
-* S3
-    * [S3简介](chapters/s3/s3-introduction.md)
-    * [S3的SLA规则](chapters/s3/s3-sla.md)
 
 -----
 * 异常
