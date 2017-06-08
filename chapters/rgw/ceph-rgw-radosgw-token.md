@@ -1,2 +1,0 @@
-# radosgw-token命令
-

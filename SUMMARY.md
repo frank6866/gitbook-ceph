@@ -31,13 +31,14 @@
 -----
 * RGW
     * [rgw简介](chapters/rgw/ceph-rgw-introduction.md)
-    * [radosgw命令](chapters/rgw/ceph-rgw-radosgw.md)
-    * [radosgw-object-expirer命令](chapters/rgw/ceph-rgw-radosgw-object-expirer.md)
+    * [radosgw](chapters/rgw/ceph-rgw-radosgw.md)
     * [radosgw-admin命令](chapters/rgw/ceph-rgw-radosgw-admin.md)
-    * [radosgw-token命令](chapters/rgw/ceph-rgw-radosgw-token.md)
+        * [用户管理](chapters/rgw/ceph-rgw-radosgw-admin-user.md)
+        * [bucket管理](chapters/rgw/ceph-rgw-radosgw-admin-bucket.md)
     * [s3cmd](chapters/rgw/ceph-rgw-s3cmd.md)
     * [S3简介](chapters/rgw/s3-introduction.md)
     * [S3的SLA规则](chapters/rgw/s3-sla.md)
+    * [S3 java sdk demo](chapters/rgw/s3-java-sdk-demo.md)
     * [s3cmd创建bucket异常](chapters/rgw/ceph-rgw-s3cmd-mb-exception.md)
 
 -----

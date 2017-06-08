@@ -72,7 +72,15 @@ RocksDB
 
 
 
+块设备操作规范：
+以下以pool rbd为例
+创建用户
+ceph auth get-or-create client.dba1 mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=rbd'
+创建块设备
+rbd create -p rbd dba1 --size=50T --image-feature=layering
 
+挂载：
+mount -o rw,noatime,inode64,discard,noquota /dev/rbd0 /backupstorage/pgsql
 
 
 
