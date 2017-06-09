@@ -85,6 +85,15 @@ mount -o rw,noatime,inode64,discard,noquota /dev/rbd0 /backupstorage/pgsql
 
 
 
+-----
+* [运维操作](chapters/ops/ceph-ops.md)
+    * [添加OSD](chapters/ops/ceph-ops-add-osd.md)
+    * [移除OSD](chapters/ops/ceph-ops-remove-osd.md)
+    * [更换journal device](chapters/ops/ceph-ops-replace-journal-device.md)
+    * [移除Ceph Monitor](chapters/ops/ceph-ops-remove-monitor.md)
+    * [添加RGW](chapters/ops/ceph-ops-add-rgw.md)
+    * [移除RGW](chapters/ops/ceph-ops-remove-rgw.md)
+    * [添加monitor](chapters/ops/ceph-ops-add-monitor.md)
 
 
 

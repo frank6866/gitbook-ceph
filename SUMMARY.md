@@ -42,16 +42,6 @@
     * [s3cmd创建bucket异常](chapters/rgw/ceph-rgw-s3cmd-mb-exception.md)
 
 -----
-* [运维操作](chapters/ops/ceph-ops.md)
-    * [添加OSD](chapters/ops/ceph-ops-add-osd.md)
-    * [移除OSD](chapters/ops/ceph-ops-remove-osd.md)
-    * [更换journal device](chapters/ops/ceph-ops-replace-journal-device.md)
-    * [移除Ceph Monitor](chapters/ops/ceph-ops-remove-monitor.md)
-    * [添加RGW](chapters/ops/ceph-ops-add-rgw.md)
-    * [移除RGW](chapters/ops/ceph-ops-remove-rgw.md)
-    * [添加monitor](chapters/ops/ceph-ops-add-monitor.md)
-
------
 * 监控
     * [Ceph监控指标](chapters/monitor/ceph-monitor-metrics.md)
     * [Ceph空间使用监控](chapters/monitor/ceph-monitor-usage.md)
