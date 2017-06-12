@@ -100,3 +100,8 @@ mount -o rw,noatime,inode64,discard,noquota /dev/rbd0 /backupstorage/pgsql
 
 
 
+
+
+
+
+

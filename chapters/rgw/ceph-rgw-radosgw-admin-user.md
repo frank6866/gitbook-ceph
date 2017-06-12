@@ -251,4 +251,3 @@ suspend用户后，用户的suspended字段会变为1
 # radosgw-admin user rm --uid=frank6866
 ```
 
-

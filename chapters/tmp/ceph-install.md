@@ -1,5 +1,7 @@
 # install
 
+* [部署ceph](chapters/ceph-deploy/ceph-install.md)
+
 # 一、部署信息
 ## 软件环境
 
@@ -14,67 +16,6 @@
 | MON+OSD+ceph-deploy | ceph-1 | 10.10.10.75 | 2c4G | vda(16G，系统盘), vdb(50G，数据盘)
 | MON+OSD | ceph-2 | 10.10.10.76 | 2c4G | vda(16G，系统盘), vdb(50G，数据盘)
 | MON+OSD | ceph-3 | 10.10.10.77 | 2c4G | vda(16G，系统盘), vdb(50G，数据盘)
-
-
-
-# 二、准备工作
-
-```
-1、安装与配置ntp，确保节点间时间同步（非常重要）。
-2、创建ceph-deploy用户（目前均为ceph.eleme），允许免密码sudo权限。
-3、建立ceph-deploy节点与新节点免密ssh连接。
-4、节点网络准备：确认节点使用静态IP，防火墙关闭。
-```
-
-
-## DNS配置
-**如果主机名已加入DNS解析，这步可以忽略。**  
-
-这里使用在/etc/hosts中配置，在ceph-1、ceph-2和ceph-3上的/etc/hosts文件中，均增加以下内容:
-
-```
-10.10.10.75    ceph-1
-10.10.10.76    ceph-2
-10.10.10.77    ceph-3
-```
-
-
-## 用户配置
-
-**所有节点**
-
-
-[all] useradd ceph
-[all] passwd ceph
-
-
-
-所有节点上都有centos用户，使用ceph-1作为ceph deploy机器，在ceph-1上创建centos用户的密钥对，并将公钥拷贝到ceph-2和ceph-3上。
-
-```
-[root@ceph-1 ~]$ ssh-keygen -t rsa
-[root@ceph-1 ~]$ ssh-copy-id root@ceph-1
-[root@ceph-1 ~]$ ssh-copy-id root@ceph-2
-[root@ceph-1 ~]$ ssh-copy-id root@ceph-3
-```
-
-## 配置yum源
-如果网速较慢可以搭建本地源。  
-
-> sudo vi /etc/yum.repos.d/ceph.repo
-
-```
-[ceph-noarch]
-name=Ceph noarch packages
-baseurl=http://mirrors.aliyun.com/ceph/rpm-jewel/el7/noarch/
-enabled=1
-gpgcheck=1
-type=rpm-md
-gpgkey=https://download.ceph.com/keys/release.asc
-```
-
-## ntp配置
-
 
 
 # 安装
