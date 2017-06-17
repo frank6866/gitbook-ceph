@@ -1,5 +1,6 @@
 # 用户管理
-> 注意: radosgw-admin命令用户不能列出所有的用户
+
+> 注意: radosgw-admin命令用户不能列出所有的用户,可以通过查看xxx.rgw.users.uid这个pool去查看所有的用户id。
 
 ## 创建用户
 创建一个id为frank6866的用户
@@ -250,4 +251,24 @@ suspend用户后，用户的suspended字段会变为1
 ```
 # radosgw-admin user rm --uid=frank6866
 ```
+
+## 查看所有用户
+```
+# rados lspools | grep user
+cn-bj-1.rgw.users.uid
+
+# rados ls -p cn-bj-1.rgw.users.uid
+c7772511-68d3-4d98-879f-b682f0623242
+......
+```
+
+
+
+
+
+
+
+
+
+
 

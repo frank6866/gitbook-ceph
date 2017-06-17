@@ -28,9 +28,3 @@ pg(placement group)对客户单来说是不可见的，但在ceph集群中扮演
 
 
 
-
-
-
-
-
-

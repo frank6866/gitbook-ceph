@@ -25,7 +25,9 @@ POOLS:
 ## 北京星光机房(fuss RGW集群)
 xg-cloud-ceph-1
 
-14台物理机, 每台物理机12块4T的SATA盘.
+3个Monitor结点
+
+14台OSD结点, 每台物理机12块4T的SATA盘.
 
 OSD个数: 462个
 
@@ -77,6 +79,9 @@ POOLS:
 
 
 ## 万国
+wg-cloud-cephrgw-1
+
+
 wg-cloud-cephmon-1
 
 62台物理机作OSD结点, 每台物理机12块4T的SATA盘;3台作monitor结点。

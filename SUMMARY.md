@@ -3,7 +3,7 @@
 * [简介](README.md)
 
 -----
-* 基础
+* basic
     * [Ceph常见概念](chapters/basic/ceph-basic-concept.md)
     * [osd/pool/pg](chapters/basic/ceph-basic-osd-pool-pg.md)
     * [Ceph故障域](chapters/basic/ceph-failure-domains.md)
@@ -24,6 +24,11 @@
         * [4.移除osd](chapters/ceph-deploy/ceph-ops-remove-osd.md)
         * [5.移除rgw](chapters/ceph-deploy/ceph-ops-remove-rgw.md)
         * [6.更换journal device](chapters/ceph-deploy/ceph-ops-replace-journal-device.md)
+
+-----
+* pg
+    * [pg状态](chapters/pg/ceph-pg-status.md)
+    * [pg数量](chapters/pg/ceph-pg-num.md)
 
 -----
 * 常用命令
@@ -49,6 +54,7 @@
     * [S3 java sdk demo](chapters/rgw/s3-java-sdk-demo.md)
     * [s3cmd创建bucket异常](chapters/rgw/ceph-rgw-s3cmd-mb-exception.md)
     * [OSS简介](chapters/rgw/oss-introduction.md)
+    * [cosbench压测工具](chapters/rgw/ceph-rgw-cosbench.md)
 
 -----
 * RBD
