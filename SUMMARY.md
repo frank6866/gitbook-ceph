@@ -11,6 +11,7 @@
     * [weight和reweight](chapters/basic/ceph-basic-weight.md)
     * [ceph存储对象的过程](chapters/basic/ceph-concept-store-process.md)
     * [CURSH](chapters/basic/ceph-concept-crush.md)
+    * [map](chapters/basic/ceph-concept-map.md)
 
 -----
 * ceph-deploy

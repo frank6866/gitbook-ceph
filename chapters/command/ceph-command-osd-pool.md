@@ -50,6 +50,9 @@ set pool 1 size to 5
 
 
 
+
+
+
 ## 查看所有pool的状态
 ```
 # ceph osd pool stats
